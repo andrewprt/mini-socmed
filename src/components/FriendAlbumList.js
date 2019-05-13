@@ -1,17 +1,16 @@
 import React from 'react';
-import Friend from './Friend';
+import FriendAlbum from './FriendAlbum';
 
-const FriendList = ({ friends }) => {
+const FriendAlbumList = ({ friendAlbums }) => {
     return (
         <div>
             {
-                friends.map((friend, i) => {
+                friendAlbums.map((friendAlbum, i) => {
                     return (
-                        <Friend
+                        <FriendAlbum
                             key={i}
-                            id={friend.id}
-                            name={friend.name}
-                            email={friend.email}
+                            id={friendAlbum.id}
+                            title={friendAlbum.title}
                         />
                     );
                 })
@@ -21,4 +20,4 @@ const FriendList = ({ friends }) => {
 }
 
 //connect mapStateToProps and mapDispatchToProps to actions.js and reducers.js
-export default FriendList;
+export default FriendAlbumList;

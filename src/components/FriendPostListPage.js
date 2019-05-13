@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import FriendList from './FriendList';
+import FriendPostList from './FriendPostList';
 import { connect } from 'react-redux';
-import { getFriendList } from '../actions';
+import { getFriendPostList } from '../actions';
 
 // parameter state comes from index.js provider store state(rootReducers)
 const mapStateToProps = (state) => {
     return {
-        friends: state.friendList.friends
+        friendPosts: state.friendList.friendPosts
     }
 }
 
@@ -16,22 +16,22 @@ const mapStateToProps = (state) => {
 // the function returns an object then uses connect to change the data from redecers.
 const mapDispatchToProps = (dispatch) => {
     return {
-        onGetFriendList: () => dispatch(getFriendList())
+        onGetFriendPostList: (param) => dispatch(getFriendPostList({ id: param.id }))
     }
 }
 
-class FriendListPage extends React.Component {
+class FriendPostListPage extends React.Component {
     componentDidMount() {
-        this.props.onGetFriendList();
+        this.props.onGetFriendPostList(this.props.location.id);
     }
 
     render() {
-        const { friends } = this.props;
+        const { friendPosts } = this.props;
         return (
             <div className="container">
                 <Header />
                 <div className="content">
-                    <FriendList friends={friends} />
+                    <FriendPostList friendPosts={friendPosts} />
                 </div>
                 <Footer />
             </div>
@@ -40,4 +40,4 @@ class FriendListPage extends React.Component {
 }
 
 //connect mapStateToProps and mapDispatchToProps to actions.js and reducers.js
-export default connect(mapStateToProps, mapDispatchToProps)(FriendListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FriendPostListPage);
