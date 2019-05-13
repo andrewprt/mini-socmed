@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
+import { friendList } from './reducers'
+import Routes from './components/Routes';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//logger for redux so it will log activites in browser console
+const logger = createLogger()
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+//for reducers in reducers.js
+const rootReducers = combineReducers({ friendList })
+
+//initialize store for reducers with loggers
+const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger))
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Routes />
+    </Provider>,
+    document.getElementById('root')
+);
 serviceWorker.unregister();
