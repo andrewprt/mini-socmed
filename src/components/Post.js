@@ -57,7 +57,7 @@ class Post extends Component {
     }
 
     componentDidMount() {
-        this.setState({ title: this.props.title, body: this.props.body, id: this.props.id });
+        this.setState({ title: this.props.title, body: this.props.body, id: this.props.id, isEdit: false });
     }
 
     render() {

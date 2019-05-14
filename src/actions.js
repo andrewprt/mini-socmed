@@ -23,7 +23,25 @@ import {
     UPDATE_POST_FAILED,
     DELETE_POST_PENDING,
     DELETE_POST_SUCCESS,
-    DELETE_POST_FAILED
+    DELETE_POST_FAILED,
+    ADD_NEW_COMMENT_PENDING,
+    ADD_NEW_COMMENT_SUCCESS,
+    ADD_NEW_COMMENT_FAILED,
+    UPDATE_COMMENT_PENDING,
+    UPDATE_COMMENT_SUCCESS,
+    UPDATE_COMMENT_FAILED,
+    DELETE_COMMENT_PENDING,
+    DELETE_COMMENT_SUCCESS,
+    DELETE_COMMENT_FAILED,
+    ADD_NEW_FRIEND_COMMENT_PENDING,
+    ADD_NEW_FRIEND_COMMENT_SUCCESS,
+    ADD_NEW_FRIEND_COMMENT_FAILED,
+    UPDATE_FRIEND_COMMENT_PENDING,
+    UPDATE_FRIEND_COMMENT_SUCCESS,
+    UPDATE_FRIEND_COMMENT_FAILED,
+    DELETE_FRIEND_COMMENT_PENDING,
+    DELETE_FRIEND_COMMENT_SUCCESS,
+    DELETE_FRIEND_COMMENT_FAILED
 } from './constants'
 
 //flow : from components file to this file, after this will go to reducers.js
@@ -104,4 +122,92 @@ export const deletePost = (payload) => (dispatch) => {
     })
         .then(data => dispatch({ type: DELETE_POST_SUCCESS, payload: payload.id }))
         .catch(error => dispatch({ type: DELETE_POST_FAILED, payload: error }))
+}
+
+export const addNewComment = (payload) => (dispatch) => {
+    dispatch({ type: ADD_NEW_COMMENT_PENDING })
+    apiPost(`https://jsonplaceholder.typicode.com/comments`, {
+        method: 'POST',
+        body: JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            body: payload.content,
+            postId: payload.id
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then(data => dispatch({ type: ADD_NEW_COMMENT_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: ADD_NEW_COMMENT_FAILED, payload: error }))
+}
+
+export const updateComment = (payload) => (dispatch) => {
+    dispatch({ type: UPDATE_COMMENT_PENDING })
+    apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            body: payload.body,
+            id: payload.id,
+            postId: payload.postId
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then(data => dispatch({ type: UPDATE_COMMENT_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: UPDATE_COMMENT_FAILED, payload: error }))
+}
+
+export const deleteComment = (payload) => (dispatch) => {
+    dispatch({ type: DELETE_COMMENT_PENDING })
+    apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
+        method: 'DELETE'
+    })
+        .then(data => dispatch({ type: DELETE_COMMENT_SUCCESS, id: payload.id, postId: payload.postId }))
+        .catch(error => dispatch({ type: DELETE_COMMENT_FAILED, payload: error }))
+}
+
+export const addNewFriendComment = (payload) => (dispatch) => {
+    dispatch({ type: ADD_NEW_FRIEND_COMMENT_PENDING })
+    apiPost(`https://jsonplaceholder.typicode.com/comments`, {
+        method: 'POST',
+        body: JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            body: payload.content,
+            postId: payload.id
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then(data => dispatch({ type: ADD_NEW_FRIEND_COMMENT_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: ADD_NEW_FRIEND_COMMENT_FAILED, payload: error }))
+}
+
+export const updateFriendComment = (payload) => (dispatch) => {
+    dispatch({ type: UPDATE_FRIEND_COMMENT_PENDING })
+    apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            body: payload.body,
+            id: payload.id,
+            postId: payload.postId
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+        .then(data => dispatch({ type: UPDATE_FRIEND_COMMENT_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: UPDATE_FRIEND_COMMENT_FAILED, payload: error }))
+}
+
+export const deleteFriendComment = (payload) => (dispatch) => {
+    dispatch({ type: DELETE_FRIEND_COMMENT_PENDING })
+    apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
+        method: 'DELETE'
+    })
+        .then(data => dispatch({ type: DELETE_FRIEND_COMMENT_SUCCESS, id: payload.id, postId: payload.postId }))
+        .catch(error => dispatch({ type: DELETE_FRIEND_COMMENT_FAILED, payload: error }))
 }

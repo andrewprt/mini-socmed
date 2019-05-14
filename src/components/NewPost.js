@@ -30,8 +30,20 @@ class NewPost extends Component {
     }
 
     handleSubmit(event) {
+        const props = this.props;
+        const state = this.state;
+        const component = this;
         event.preventDefault();
-        this.props.onAddNewPost({ title: this.state.title, content: this.state.content });
+
+        const myPromise = new Promise(function (resolve) {
+            resolve(props.onAddNewPost({
+                title: state.title, content: state.content
+            }))
+        });
+
+        myPromise.then(function () {
+            component.setState({ title: '', content: '' });
+        });
     }
 
     render() {

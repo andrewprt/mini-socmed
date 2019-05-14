@@ -15,6 +15,10 @@ class FriendPost extends Component {
         this.setState({ isExpand: !this.state.isExpand })
     }
 
+    componentDidMount() {
+        this.setState({ isExpand: false });
+    }
+
     render() {
         const { title, body, id } = this.props;
         return (

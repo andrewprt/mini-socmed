@@ -5,10 +5,10 @@ const FriendPostList = ({ friendPosts }) => {
     return (
         <div>
             {
-                friendPosts.map((friendPost, i) => {
+                friendPosts.map((friendPost) => {
                     return (
                         <FriendPost
-                            key={i}
+                            key={friendPost.id}
                             id={friendPost.id}
                             title={friendPost.title}
                             body={friendPost.body}

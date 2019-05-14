@@ -23,7 +23,6 @@ const mapDispatchToProps = (dispatch) => {
 
 class FriendAlbumPhotoList extends React.Component {
     componentDidMount() {
-        const x = this.props.friendAlbumPhotos.findIndex(x => x.id === this.props.location.id);
         if (this.props.friendAlbumPhotos.length === 0) {
             this.props.onGetFriendAlbumPhotoList(this.props.location.id);
         }

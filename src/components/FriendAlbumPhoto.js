@@ -65,25 +65,16 @@ class FriendAlbumPhoto extends Component {
         this.setState({ open: false });
     };
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         isExpand: false
-    //     };
-
-    //     this.handleToggle = this.handleToggle.bind(this);
-    // }
-
-    // handleToggle = () => {
-    //     this.setState({ isExpand: !this.state.isExpand })
-    // }
+    componentDidMount() {
+        this.setState({ open: false });
+    }
 
     render() {
-        const { title, url, thumbnailUrl, id } = this.props;
+        const { title, url, thumbnailUrl } = this.props;
         return (
             <div className="thumbnail">
                 <div onClick={this.handleClickOpen}>
-                    <img src={thumbnailUrl} />
+                    <img src={thumbnailUrl} alt="thumbnail"/>
                 </div>
                 <Dialog
                     onClose={this.handleClose}
@@ -94,7 +85,7 @@ class FriendAlbumPhoto extends Component {
                         {title}
                     </DialogTitle>
                     <DialogContent>
-                        <img src={url} />
+                        <img src={url} alt="fullsize"/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">

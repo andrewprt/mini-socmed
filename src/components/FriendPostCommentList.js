@@ -1,15 +1,16 @@
 import React from 'react';
 import FriendPostComment from './FriendPostComment';
 
-const FriendPostCommentList = ({ comments }) => {
+const FriendPostCommentList = ({ comments, postId }) => {
     return (
         <div>
             {
-                comments.map((comment, i) => {
+                comments.map((comment) => {
                     return (
                         <FriendPostComment
-                            key={i}
+                            key={comment.id}
                             id={comment.id}
+                            postId={postId}
                             name={comment.name}
                             email={comment.email}
                             body={comment.body}
