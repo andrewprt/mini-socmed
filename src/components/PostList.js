@@ -1,14 +1,25 @@
-import React from 'react'
-import Header from './Header'
+import React, { Component } from 'react';
+import Post from './Post';
 
-
-class PostList extends React.Component {
+class PostList extends Component {
     render() {
+        const { posts } = this.props;
         return (
-            <div className="container">
-                <Header />
+            <div>
+                {
+                    posts.map((post) => {
+                        return (
+                            <Post
+                                key={post.id}
+                                id={post.id}
+                                title={post.title}
+                                body={post.body}
+                            />
+                        );
+                    })
+                }
             </div>
-        )
+        );
     }
 }
 

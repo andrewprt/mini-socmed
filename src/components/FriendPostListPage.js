@@ -22,7 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 
 class FriendPostListPage extends React.Component {
     componentDidMount() {
-        this.props.onGetFriendPostList(this.props.location.id);
+        if (this.props.friendPosts.length === 0) {
+            this.props.onGetFriendPostList(this.props.location.id);
+        }
     }
 
     render() {

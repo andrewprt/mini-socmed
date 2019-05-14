@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
+import FriendPostDetail from './FriendPostDetail';
 
-const FriendPost = ({ title, body }) => {
-    return (
-        <div>
+class FriendPost extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isExpand: false
+        };
+
+        this.handleToggle = this.handleToggle.bind(this);
+    }
+
+    handleToggle = () => {
+        this.setState({ isExpand: !this.state.isExpand })
+    }
+
+    render() {
+        const { title, body, id } = this.props;
+        return (
             <div>
-                <h2>{title}</h2>
-                <p>{body}</p>
+                <div>
+                    <h2 onClick={this.handleToggle}>{title}</h2>
+                    {
+                        this.state.isExpand === true
+                            ?
+                            <FriendPostDetail body={body} id={id} />
+                            :
+                            null
+                    }
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default FriendPost;

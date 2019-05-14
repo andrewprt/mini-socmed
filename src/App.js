@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Homepage from './components/Homepage';
+import PostListPage from './components/PostListPage';
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="container">
         <Header />
         <div className="content">
-          <Homepage />
+          <PostListPage />
         </div>
         <Footer />
       </div>

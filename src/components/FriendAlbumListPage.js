@@ -22,7 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 
 class FriendAlbumListPage extends React.Component {
     componentDidMount() {
-        this.props.onGetFriendAlbumList(this.props.location.id);
+        if (this.props.friendAlbums.length === 0) {
+            this.props.onGetFriendAlbumList(this.props.location.id);
+        }
     }
 
     render() {

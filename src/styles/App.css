@@ -29,6 +29,7 @@ html {
 .content {
   margin-top: 6rem;
   padding-top: 2.5rem;
+  width: 100%;
   min-height: 90vh;
   position: relative;
   background: linear-gradient(to left bottom, rgb(0, 255, 255, .8), #98ff98);

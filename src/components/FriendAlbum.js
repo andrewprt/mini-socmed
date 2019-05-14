@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friendalbum = ({ title }) => {
+const FriendAlbum = ({ title }) => {
     return (
         <div>
             <div>
@@ -10,4 +10,4 @@ const Friendalbum = ({ title }) => {
     );
 }
 
-export default Friendalbum;
+export default FriendAlbum;
