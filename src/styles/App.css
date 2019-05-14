@@ -60,3 +60,7 @@ button {
 .thumbnail img {
   object-fit: cover;
 }
+
+.post {
+  cursor: pointer;
+}

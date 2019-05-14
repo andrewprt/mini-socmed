@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePost, deletePost } from '../actions';
+import PostDetail from './PostDetail';
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -13,6 +14,7 @@ class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isExpand: false,
             isEdit: false,
             title: '',
             body: '',
@@ -22,6 +24,7 @@ class Post extends Component {
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleChangeBody = this.handleChangeBody.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
+        this.handleToggleEdit = this.handleToggleEdit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -34,6 +37,11 @@ class Post extends Component {
     }
 
     handleToggle(event) {
+        event.preventDefault();
+        this.setState({ isExpand: !this.state.isExpand });
+    }
+
+    handleToggleEdit(event) {
         event.preventDefault();
         this.setState({ isEdit: !this.state.isEdit });
     }
@@ -61,33 +69,49 @@ class Post extends Component {
     }
 
     render() {
-        const { isEdit, title, body, id } = this.state;
-        const { onDeletePost } = this.props;
+        const { isEdit, title, body } = this.state;
+        const { id, onDeletePost } = this.props;
         return (
-            isEdit === false
-                ?
+            <div>
                 <div>
-                    <h2>{id} - {title}</h2>
-                    <p>{body}</p>
-                    <button onClick={this.handleToggle}>Edit Post</button>
-                    <button onClick={() => onDeletePost({ id: id })}>Delete Post</button>
+                    {
+                        isEdit === false
+                            ?
+                            <div>
+                                <div onClick={this.handleToggle} className="post">
+                                    <h2>{id} - {title}</h2>
+                                    <p>{body}</p>
+                                </div>
+                                <button onClick={this.handleToggleEdit}>Edit Post</button>
+                                <button onClick={() => onDeletePost({ id: id })}>Delete Post</button>
+                            </div>
+                            :
+                            <form>
+                                <input
+                                    type='input' value={title}
+                                    placeholder='Input title here...' onChange={this.handleChangeTitle}
+                                />
+                                <input
+                                    type='input' value={body}
+                                    placeholder='Input content here...' onChange={this.handleChangeBody}
+                                />
+                                <input type="button" value="Submit"
+                                    onClick={this.handleSubmit} />
+                                <button onClick={this.handleToggle}>Cancel</button>
+                            </form>
+                    }
                 </div>
-                :
-                <form>
-                    <input
-                        type='input' value={title}
-                        placeholder='Input title here...' onChange={this.handleChangeTitle}
-                    />
-                    <input
-                        type='input' value={body}
-                        placeholder='Input content here...' onChange={this.handleChangeBody}
-                    />
-                    <input type="button" value="Submit"
-                        onClick={this.handleSubmit} />
-                    <button onClick={this.handleToggle}>Cancel</button>
-                </form>
+                {
+                    this.state.isExpand === true
+                        ?
+                        <PostDetail body={body} id={id} />
+                        :
+                        null
+                }
+            </div>
         );
     }
 }
 
 export default connect(null, mapDispatchToProps)(Post);
+

@@ -152,28 +152,27 @@ export const postList = (state = posts, action = {}) => {
             return Object.assign({}, state, { posts: [...state.posts], isPending: false })
         case DELETE_POST_FAILED:
             return Object.assign({}, state, { error: action.payload })
-
         case ADD_NEW_COMMENT_PENDING:
             return Object.assign({}, state, { isPending: true })
         case ADD_NEW_COMMENT_SUCCESS:
             const lastCommentId = state.lastCommentId + 1;
             action.payload.id = lastCommentId;
-            return Object.assign({}, state, { friendComments: [...state.friendComments, action.payload], isPending: false, lastCommentId: lastCommentId })
+            return Object.assign({}, state, { comments: [...state.comments, action.payload], isPending: false, lastCommentId: lastCommentId })
         case ADD_NEW_COMMENT_FAILED:
             return Object.assign({}, state, { error: action.payload })
         case UPDATE_COMMENT_PENDING:
             return Object.assign({}, state, { isPending: true })
         case UPDATE_COMMENT_SUCCESS:
-            const commentIdx = state.friendComments.findIndex(x => x.id === action.payload.id);
-            state.friendComments[commentIdx].body = action.payload.body;
-            return Object.assign({}, state, { friendComments: [...state.friendComments], isPending: false })
+            const commentIdx = state.comments.findIndex(x => x.id === action.payload.id);
+            state.comments[commentIdx].body = action.payload.body;
+            return Object.assign({}, state, { comments: [...state.comments], isPending: false })
         case UPDATE_COMMENT_FAILED:
             return Object.assign({}, state, { error: action.payload })
         case DELETE_COMMENT_PENDING:
             return Object.assign({}, state, { isPending: true })
         case DELETE_COMMENT_SUCCESS:
-            state.friendComments.splice(state.friendComments.findIndex(x => x.id === action.id), 1);
-            return Object.assign({}, state, { friendComments: [...state.friendComments], isPending: false })
+            state.comments.splice(state.comments.findIndex(x => x.id === action.id), 1);
+            return Object.assign({}, state, { comments: [...state.comments], isPending: false })
         case DELETE_COMMENT_FAILED:
             return Object.assign({}, state, { error: action.payload })
         default:
