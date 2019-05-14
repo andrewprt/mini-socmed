@@ -2,6 +2,9 @@ import {
     GET_FRIEND_ALBUM_LIST_PENDING,
     GET_FRIEND_ALBUM_LIST_SUCCESS,
     GET_FRIEND_ALBUM_LIST_FAILED,
+    GET_FRIEND_ALBUM_PHOTOS_LIST_PENDING,
+    GET_FRIEND_ALBUM_PHOTOS_LIST_SUCCESS,
+    GET_FRIEND_ALBUM_PHOTOS_LIST_FAILED,
     GET_FRIEND_POST_LIST_PENDING,
     GET_FRIEND_POST_LIST_SUCCESS,
     GET_FRIEND_POST_LIST_FAILED,
@@ -57,8 +60,19 @@ export const friendList = (state = friends, action = {}) => {
         case GET_FRIEND_ALBUM_LIST_PENDING:
             return Object.assign({}, state, { isPending: true })
         case GET_FRIEND_ALBUM_LIST_SUCCESS:
+            for (let i = 0; i < action.payload.length; i++) {
+                action.payload[i].photos = [];
+            }
             return Object.assign({}, state, { friendAlbums: action.payload, isPending: false })
         case GET_FRIEND_ALBUM_LIST_FAILED:
+            return Object.assign({}, state, { error: action.payload })
+        case GET_FRIEND_ALBUM_PHOTOS_LIST_PENDING:
+            return Object.assign({}, state, { isPending: true })
+        case GET_FRIEND_ALBUM_PHOTOS_LIST_SUCCESS:
+            const y = state.friendAlbums.findIndex(z => z.id === action.id);
+            state.friendAlbums[y].photos = action.payload;
+            return Object.assign({}, state, { friendAlbums: [...state.friendAlbums], isPending: false })
+        case GET_FRIEND_ALBUM_PHOTOS_LIST_FAILED:
             return Object.assign({}, state, { error: action.payload })
         default:
             return state

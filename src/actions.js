@@ -3,6 +3,9 @@ import {
     GET_FRIEND_ALBUM_LIST_PENDING,
     GET_FRIEND_ALBUM_LIST_SUCCESS,
     GET_FRIEND_ALBUM_LIST_FAILED,
+    GET_FRIEND_ALBUM_PHOTOS_LIST_PENDING,
+    GET_FRIEND_ALBUM_PHOTOS_LIST_SUCCESS,
+    GET_FRIEND_ALBUM_PHOTOS_LIST_FAILED,
     GET_FRIEND_POST_LIST_PENDING,
     GET_FRIEND_POST_LIST_SUCCESS,
     GET_FRIEND_POST_LIST_FAILED,
@@ -50,6 +53,13 @@ export const getFriendAlbumList = (payload) => (dispatch) => {
     apiCall(`https://jsonplaceholder.typicode.com/albums?userId=${payload.id}`)
         .then(data => dispatch({ type: GET_FRIEND_ALBUM_LIST_SUCCESS, payload: data }))
         .catch(error => dispatch({ type: GET_FRIEND_ALBUM_LIST_FAILED, payload: error }))
+}
+
+export const getFriendAlbumPhotoList = (payload) => (dispatch) => {
+    dispatch({ type: GET_FRIEND_ALBUM_PHOTOS_LIST_PENDING })
+    apiCall(`https://jsonplaceholder.typicode.com/photos?albumId=${payload.id}`)
+        .then(data => dispatch({ type: GET_FRIEND_ALBUM_PHOTOS_LIST_SUCCESS, payload: data, id: payload.id }))
+        .catch(error => dispatch({ type: GET_FRIEND_ALBUM_PHOTOS_LIST_FAILED, payload: error }))
 }
 
 export const addNewPost = (payload) => (dispatch) => {

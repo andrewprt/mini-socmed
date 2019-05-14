@@ -52,3 +52,11 @@ html {
 button {
   cursor: pointer;
 }
+
+.thumbnail {
+  cursor: pointer;
+}
+
+.thumbnail img {
+  object-fit: cover;
+}

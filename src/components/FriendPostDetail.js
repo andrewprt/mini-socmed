@@ -4,7 +4,7 @@ import { getFriendPostCommentList } from '../actions';
 import FriendPostCommentList from './FriendPostCommentList';
 
 const mapStateToProps = (state, param) => {
-    const x = state.friendList.friendPosts.findIndex(x => x.id === param.id);
+    const x = state.friendList.friendPosts.findIndex(z => z.id === param.id);
     return {
         comments: state.friendList.friendPosts[x].comments
     }

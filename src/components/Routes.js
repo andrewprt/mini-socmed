@@ -4,6 +4,7 @@ import App from '../App';
 import FriendListPage from './FriendListPage';
 import FriendPostListPage from './FriendPostListPage';
 import FriendAlbumListPage from './FriendAlbumListPage';
+import FriendAlbumPhotoList from './FriendAlbumPhotoList';
 
 //settings for routes, which components will be called based on link
 //callback is used for signin process. After google aunthentication, callback will be called
@@ -14,6 +15,7 @@ const Routes = () => (
             <Route path="/friends" render={(props) => <FriendListPage {...props} />} />
             <Route path="/friendPosts" render={(props) => <FriendPostListPage {...props} />} />
             <Route path="/friendAlbums" render={(props) => <FriendAlbumListPage {...props} />} />
+            <Route path="/friendPhotos" render={(props) => <FriendAlbumPhotoList {...props} />} />
         </div>
     </Router>
 );
