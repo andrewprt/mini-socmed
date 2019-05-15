@@ -27,22 +27,35 @@ html {
 }
 
 .content {
-  margin-top: 6rem;
-  padding-top: 2.5rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
   width: 100%;
   min-height: 90vh;
   position: relative;
-  background: linear-gradient(to left bottom, rgb(0, 255, 255, .8), #98ff98);
-  /* background-image: url(https://www.photohdx.com/images/2016/10/yellow-wood-table-background.jpg); */
-  background-size: cover;
+  background-color: #e9ebee;
+  background-size: cover; 
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   /* space-evenly so products will have same spacing */
   justify-content: space-evenly;
   align-items: flex-start;
-  margin-bottom: 10rem;
+  margin-bottom: 4rem;
   padding-bottom: 2.5rem; 
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.content--title {
+  text-align: center;
+}
+
+.content--title > h2 {
+  margin-bottom: 1rem;
+}
+
+.content--title font {
+  color: green;
 }
 
 .content > div {
@@ -53,12 +66,28 @@ button {
   cursor: pointer;
 }
 
-.thumbnail {
-  cursor: pointer;
+.form {
+  display: flex;
+  flex-direction: row;
 }
 
-.thumbnail img {
-  object-fit: cover;
+.form--inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  resize: none;
+  margin-bottom: 1rem;
+}
+
+.button {
+  max-width: 50%;
 }
 
 .post {

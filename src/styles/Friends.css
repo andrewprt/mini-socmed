@@ -1,0 +1,35 @@
+.friends {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
+}
+
+.friends--card {
+    width: 25rem;
+    padding: .5rem;
+    margin: .5rem;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.photos div {
+    margin: .5rem;
+}
+
+.thumbnail {
+    cursor: pointer;
+  }
+  
+.thumbnail img {
+object-fit: cover;
+}

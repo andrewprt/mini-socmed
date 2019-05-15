@@ -1,9 +1,10 @@
 import React from 'react';
 import Friend from './Friend';
+import '../styles/Friends.css';
 
 const FriendList = ({ friends }) => {
     return (
-        <div>
+        <div className="friends">
             {
                 friends.map((friend, i) => {
                     return (

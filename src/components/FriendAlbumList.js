@@ -1,20 +1,23 @@
 import React from 'react';
 import FriendAlbum from './FriendAlbum';
 
-const FriendAlbumList = ({ friendAlbums }) => {
+const FriendAlbumList = ({ friendAlbums, name }) => {
     return (
-        <div>
-            {
-                friendAlbums.map((friendAlbum, i) => {
-                    return (
-                        <FriendAlbum
-                            key={i}
-                            id={friendAlbum.id}
-                            title={friendAlbum.title}
-                        />
-                    );
-                })
-            }
+        <div className="content--title">
+            <h2><font>{name}'s</font> Albums</h2>
+            <div className="friends">
+                {
+                    friendAlbums.map((friendAlbum, i) => {
+                        return (
+                            <FriendAlbum
+                                key={i}
+                                id={friendAlbum.id}
+                                title={friendAlbum.title}
+                            />
+                        );
+                    })
+                }
+            </div>
         </div>
     );
 }

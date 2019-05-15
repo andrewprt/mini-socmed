@@ -30,7 +30,7 @@ class FriendListPage extends React.Component {
         return (
             <div className="container">
                 <Header />
-                <div className="content">
+                <div className="content friends">
                     <FriendList friends={friends} />
                 </div>
                 <Footer />

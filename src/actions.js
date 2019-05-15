@@ -1,87 +1,61 @@
 import { apiCall, apiPost } from './api/api'
 import {
-    GET_FRIEND_ALBUM_LIST_PENDING,
     GET_FRIEND_ALBUM_LIST_SUCCESS,
-    GET_FRIEND_ALBUM_LIST_FAILED,
-    GET_FRIEND_ALBUM_PHOTOS_LIST_PENDING,
     GET_FRIEND_ALBUM_PHOTOS_LIST_SUCCESS,
-    GET_FRIEND_ALBUM_PHOTOS_LIST_FAILED,
-    GET_FRIEND_POST_LIST_PENDING,
     GET_FRIEND_POST_LIST_SUCCESS,
-    GET_FRIEND_POST_LIST_FAILED,
-    GET_FRIEND_POST_COMMENT_LIST_PENDING,
     GET_FRIEND_POST_COMMENT_LIST_SUCCESS,
-    GET_FRIEND_POST_COMMENT_LIST_FAILED,
-    GET_FRIEND_LIST_PENDING,
     GET_FRIEND_LIST_SUCCESS,
-    GET_FRIEND_LIST_FAILED,
-    ADD_NEW_POST_PENDING,
     ADD_NEW_POST_SUCCESS,
-    ADD_NEW_POST_FAILED,
-    UPDATE_POST_PENDING,
     UPDATE_POST_SUCCESS,
-    UPDATE_POST_FAILED,
-    DELETE_POST_PENDING,
     DELETE_POST_SUCCESS,
-    DELETE_POST_FAILED,
-    ADD_NEW_COMMENT_PENDING,
     ADD_NEW_COMMENT_SUCCESS,
-    ADD_NEW_COMMENT_FAILED,
-    UPDATE_COMMENT_PENDING,
     UPDATE_COMMENT_SUCCESS,
-    UPDATE_COMMENT_FAILED,
-    DELETE_COMMENT_PENDING,
     DELETE_COMMENT_SUCCESS,
-    DELETE_COMMENT_FAILED,
-    ADD_NEW_FRIEND_COMMENT_PENDING,
     ADD_NEW_FRIEND_COMMENT_SUCCESS,
-    ADD_NEW_FRIEND_COMMENT_FAILED,
-    UPDATE_FRIEND_COMMENT_PENDING,
     UPDATE_FRIEND_COMMENT_SUCCESS,
-    UPDATE_FRIEND_COMMENT_FAILED,
-    DELETE_FRIEND_COMMENT_PENDING,
     DELETE_FRIEND_COMMENT_SUCCESS,
-    DELETE_FRIEND_COMMENT_FAILED
+    PENDING,
+    FAILED
 } from './constants'
 
 //flow : from components file to this file, after this will go to reducers.js
 export const getFriendList = () => (dispatch) => {
-    dispatch({ type: GET_FRIEND_LIST_PENDING })
+    dispatch({ type: PENDING })
     apiCall("https://jsonplaceholder.typicode.com/users")
         .then(data => dispatch({ type: GET_FRIEND_LIST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: GET_FRIEND_LIST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const getFriendPostList = (payload) => (dispatch) => {
-    dispatch({ type: GET_FRIEND_POST_LIST_PENDING })
+    dispatch({ type: PENDING })
     apiCall(`https://jsonplaceholder.typicode.com/posts?userId=${payload.id}`)
         .then(data => dispatch({ type: GET_FRIEND_POST_LIST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: GET_FRIEND_POST_LIST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const getFriendPostCommentList = (payload) => (dispatch) => {
-    dispatch({ type: GET_FRIEND_POST_COMMENT_LIST_PENDING })
+    dispatch({ type: PENDING })
     apiCall(`https://jsonplaceholder.typicode.com/comments?postId=${payload.id}`)
         .then(data => dispatch({ type: GET_FRIEND_POST_COMMENT_LIST_SUCCESS, payload: data, id: payload.id }))
-        .catch(error => dispatch({ type: GET_FRIEND_POST_COMMENT_LIST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const getFriendAlbumList = (payload) => (dispatch) => {
-    dispatch({ type: GET_FRIEND_ALBUM_LIST_PENDING })
+    dispatch({ type: PENDING })
     apiCall(`https://jsonplaceholder.typicode.com/albums?userId=${payload.id}`)
         .then(data => dispatch({ type: GET_FRIEND_ALBUM_LIST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: GET_FRIEND_ALBUM_LIST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const getFriendAlbumPhotoList = (payload) => (dispatch) => {
-    dispatch({ type: GET_FRIEND_ALBUM_PHOTOS_LIST_PENDING })
+    dispatch({ type: PENDING })
     apiCall(`https://jsonplaceholder.typicode.com/photos?albumId=${payload.id}`)
         .then(data => dispatch({ type: GET_FRIEND_ALBUM_PHOTOS_LIST_SUCCESS, payload: data, id: payload.id }))
-        .catch(error => dispatch({ type: GET_FRIEND_ALBUM_PHOTOS_LIST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const addNewPost = (payload) => (dispatch) => {
-    dispatch({ type: ADD_NEW_POST_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/posts`, {
         method: 'POST',
         body: JSON.stringify({
@@ -94,11 +68,11 @@ export const addNewPost = (payload) => (dispatch) => {
         }
     })
         .then(data => dispatch({ type: ADD_NEW_POST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: ADD_NEW_POST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const updatePost = (payload) => (dispatch) => {
-    dispatch({ type: UPDATE_POST_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/posts/${payload.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
@@ -112,20 +86,20 @@ export const updatePost = (payload) => (dispatch) => {
         }
     })
         .then(data => dispatch({ type: UPDATE_POST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: UPDATE_POST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const deletePost = (payload) => (dispatch) => {
-    dispatch({ type: DELETE_POST_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/posts/${payload.id}`, {
         method: 'DELETE'
     })
         .then(data => dispatch({ type: DELETE_POST_SUCCESS, payload: payload.id }))
-        .catch(error => dispatch({ type: DELETE_POST_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const addNewComment = (payload) => (dispatch) => {
-    dispatch({ type: ADD_NEW_COMMENT_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/comments`, {
         method: 'POST',
         body: JSON.stringify({
@@ -139,11 +113,11 @@ export const addNewComment = (payload) => (dispatch) => {
         }
     })
         .then(data => dispatch({ type: ADD_NEW_COMMENT_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: ADD_NEW_COMMENT_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const updateComment = (payload) => (dispatch) => {
-    dispatch({ type: UPDATE_COMMENT_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
@@ -156,20 +130,20 @@ export const updateComment = (payload) => (dispatch) => {
         }
     })
         .then(data => dispatch({ type: UPDATE_COMMENT_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: UPDATE_COMMENT_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const deleteComment = (payload) => (dispatch) => {
-    dispatch({ type: DELETE_COMMENT_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
         method: 'DELETE'
     })
         .then(data => dispatch({ type: DELETE_COMMENT_SUCCESS, id: payload.id, postId: payload.postId }))
-        .catch(error => dispatch({ type: DELETE_COMMENT_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const addNewFriendComment = (payload) => (dispatch) => {
-    dispatch({ type: ADD_NEW_FRIEND_COMMENT_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/comments`, {
         method: 'POST',
         body: JSON.stringify({
@@ -183,11 +157,11 @@ export const addNewFriendComment = (payload) => (dispatch) => {
         }
     })
         .then(data => dispatch({ type: ADD_NEW_FRIEND_COMMENT_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: ADD_NEW_FRIEND_COMMENT_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const updateFriendComment = (payload) => (dispatch) => {
-    dispatch({ type: UPDATE_FRIEND_COMMENT_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
@@ -200,14 +174,14 @@ export const updateFriendComment = (payload) => (dispatch) => {
         }
     })
         .then(data => dispatch({ type: UPDATE_FRIEND_COMMENT_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: UPDATE_FRIEND_COMMENT_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }
 
 export const deleteFriendComment = (payload) => (dispatch) => {
-    dispatch({ type: DELETE_FRIEND_COMMENT_PENDING })
+    dispatch({ type: PENDING })
     apiPost(`https://jsonplaceholder.typicode.com/comments/${payload.id}`, {
         method: 'DELETE'
     })
         .then(data => dispatch({ type: DELETE_FRIEND_COMMENT_SUCCESS, id: payload.id, postId: payload.postId }))
-        .catch(error => dispatch({ type: DELETE_FRIEND_COMMENT_FAILED, payload: error }))
+        .catch(error => dispatch({ type: FAILED, payload: error }))
 }

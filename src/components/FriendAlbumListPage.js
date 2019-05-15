@@ -33,7 +33,7 @@ class FriendAlbumListPage extends React.Component {
             <div className="container">
                 <Header />
                 <div className="content">
-                    <FriendAlbumList friendAlbums={friendAlbums} />
+                    <FriendAlbumList friendAlbums={friendAlbums} name={this.props.location.name.name} />
                 </div>
                 <Footer />
             </div>

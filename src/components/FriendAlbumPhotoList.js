@@ -34,19 +34,24 @@ class FriendAlbumPhotoList extends React.Component {
             <div className="container">
                 <Header />
                 <div className="content">
-                    {
-                        friendAlbumPhotos.map((photo) => {
-                            return (
-                                <FriendAlbumPhoto
-                                    key={photo.id}
-                                    id={photo.id}
-                                    title={photo.title}
-                                    url={photo.url}
-                                    thumbnailUrl={photo.thumbnailUrl}
-                                />
-                            );
-                        })
-                    }
+                    <div className="content--title">
+                        <h2>Photos of <font>{this.props.location.title.title}</font></h2>
+                        <div className="photos">
+                            {
+                                friendAlbumPhotos.map((photo) => {
+                                    return (
+                                        <FriendAlbumPhoto
+                                            key={photo.id}
+                                            id={photo.id}
+                                            title={photo.title}
+                                            url={photo.url}
+                                            thumbnailUrl={photo.thumbnailUrl}
+                                        />
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
                 <Footer />
             </div>

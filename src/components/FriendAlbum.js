@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const FriendAlbum = ({ title, id }) => {
     return (
-        <div>
-            <div>
-                <h2>{title}</h2>
+        <div className="friends--card">
+            <h3>{title}</h3>
+            <div className="friends--card-links">
                 <Link to={{
                     pathname: '/friendPhotos',
-                    id: { id }
+                    id: { id }, title: { title }
                 }}>View Photos</Link>
             </div>
         </div>

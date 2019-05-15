@@ -74,7 +74,7 @@ class FriendAlbumPhoto extends Component {
         return (
             <div className="thumbnail">
                 <div onClick={this.handleClickOpen}>
-                    <img src={thumbnailUrl} alt="thumbnail"/>
+                    <img src={thumbnailUrl} alt="thumbnail" />
                 </div>
                 <Dialog
                     onClose={this.handleClose}
@@ -85,7 +85,7 @@ class FriendAlbumPhoto extends Component {
                         {title}
                     </DialogTitle>
                     <DialogContent>
-                        <img src={url} alt="fullsize"/>
+                        <img src={url} alt="fullsize" />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
