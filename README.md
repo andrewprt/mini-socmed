@@ -3,7 +3,7 @@ Mini Social Media as a part of Recruitment Process for Kumparan.com
 Features:
 
 ## Homepage
--Add,edit,delete new post
+-Add,edit,delete new post (by clicking the title of the post)
 -Add,edit,delete comment
 
 ## Friends
@@ -11,14 +11,14 @@ Features:
 -View Albums
 
 ## Friend's posts
--View post details
--Add,edit,delete comment
+-View post details (by clicking the title of the post)
+-Add,edit,delete comment (view comment by clicking the title of the post)
 
 ## Friend's Albums
--View photos
+-View photos (by clicking the album)
 
 ## Friend's photos of an Album
--View photo details
+-View photo details (by clicking the photo)
 
 
 Technologies used:
