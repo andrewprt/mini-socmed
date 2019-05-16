@@ -63,13 +63,13 @@ class NewFriendComment extends Component {
         });
 
         myPromise.then(function () {
-            component.setState({ name: '', email: 'user@google.com', content: '' });
+            component.setState({ name: 'User', email: 'user@google.com', content: '' });
         });
     }
 
     render() {
         const { classes } = this.props;
-        
+
         return (
             <form onSubmit={this.handleSubmit} className="form--comment">
                 <span>New comment</span>
