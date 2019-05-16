@@ -3,7 +3,7 @@ import PostComment from './PostComment';
 
 const PostCommentList = ({ comments, postId }) => {
     return (
-        <div>
+        <div className="comments">
             {
                 comments.map((comment) => {
                     return (

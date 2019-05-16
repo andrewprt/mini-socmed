@@ -5,7 +5,7 @@ class PostList extends Component {
     render() {
         const { posts } = this.props;
         return (
-            <div>
+            <div className="posts--list">
                 {
                     posts.map((post) => {
                         return (

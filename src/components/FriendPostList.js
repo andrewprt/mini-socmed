@@ -3,7 +3,7 @@ import FriendPost from './FriendPost';
 
 const FriendPostList = ({ friendPosts }) => {
     return (
-        <div>
+        <div className="posts--list">
             {
                 friendPosts.map((friendPost) => {
                     return (

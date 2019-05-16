@@ -73,31 +73,41 @@ class Post extends Component {
         const { id, onDeletePost } = this.props;
         return (
             <div>
-                <div>
+                <div className="post">
                     {
                         isEdit === false
                             ?
-                            <div>
-                                <div onClick={this.handleToggle} className="post">
+                            <div className="posts--form-view">
+                                <div onClick={this.handleToggle} >
                                     <h2>{id} - {title}</h2>
                                     <p>{body}</p>
                                 </div>
-                                <button onClick={this.handleToggleEdit}>Edit Post</button>
-                                <button onClick={() => onDeletePost({ id: id })}>Delete Post</button>
+                                <br />
+                                <div className="posts--form-buttonGroup">
+                                    <button onClick={this.handleToggleEdit}>Edit Post</button>
+                                    <button onClick={() => onDeletePost({ id: id })}>Delete Post</button>
+                                </div>
                             </div>
                             :
-                            <form>
-                                <input
-                                    type='input' value={title}
-                                    placeholder='Input title here...' onChange={this.handleChangeTitle}
-                                />
-                                <input
-                                    type='input' value={body}
-                                    placeholder='Input content here...' onChange={this.handleChangeBody}
-                                />
-                                <input type="button" value="Submit"
-                                    onClick={this.handleSubmit} />
-                                <button onClick={this.handleToggle}>Cancel</button>
+                            <form className="posts--form-edit">
+                                <div className="posts--form-inputGroup">
+                                    <span>Title</span>
+                                    <input
+                                        type='input' value={title}
+                                        placeholder='Input title here...' onChange={this.handleChangeTitle}
+                                    />
+                                </div>
+                                <div className="posts--form-inputGroup">
+                                    <span>Content</span>
+                                    <input
+                                        type='input' value={body}
+                                        placeholder='Input content here...' onChange={this.handleChangeBody}
+                                    />
+                                </div>
+                                <div className="posts--form-buttonGroup">
+                                    <button onClick={this.handleSubmit}>Submit</button>
+                                    <button onClick={this.handleToggleEdit}>Cancel</button>
+                                </div>
                             </form>
                     }
                 </div>

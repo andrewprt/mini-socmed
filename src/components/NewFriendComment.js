@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNewFriendComment } from '../actions';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
+
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    },
+    input: {
+        display: 'none',
+    },
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -14,8 +27,8 @@ class NewFriendComment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
+            name: 'User',
+            email: 'user@google.com',
             content: ''
         };
 
@@ -50,29 +63,32 @@ class NewFriendComment extends Component {
         });
 
         myPromise.then(function () {
-            component.setState({ name: '', email: '', content: '' });
+            component.setState({ name: '', email: 'user@google.com', content: '' });
         });
     }
 
     render() {
+        const { classes } = this.props;
+        
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    type='input' value={this.state.name}
-                    placeholder='Input name here...' onChange={this.handleChangeName}
-                />
-                <input
-                    type='input' value={this.state.email}
-                    placeholder='Input email here...' onChange={this.handleChangeEmail}
-                />
-                <input
+            <form onSubmit={this.handleSubmit} className="form--comment">
+                <span>New comment</span>
+                <textarea rows="3" cols="50"
                     type='input' value={this.state.content}
-                    placeholder='Input content here...' onChange={this.handleChangeContent}
+                    placeholder='Input comment here...' onChange={this.handleChangeContent}
                 />
-                <input type="submit" value="Submit" />
+                <Button type="submit" variant="contained" color="primary"
+                    className={classNames(classes.container, 'button')}>
+                    Submit
+                </Button>
             </form>
         );
     }
 }
 
-export default connect(null, mapDispatchToProps)(NewFriendComment);
+NewFriendComment.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(NewFriendComment));

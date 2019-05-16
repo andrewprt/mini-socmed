@@ -3,7 +3,7 @@ import FriendPostComment from './FriendPostComment';
 
 const FriendPostCommentList = ({ comments, postId }) => {
     return (
-        <div>
+        <div className="friendComments">
             {
                 comments.map((comment) => {
                     return (

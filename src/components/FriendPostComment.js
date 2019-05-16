@@ -62,24 +62,48 @@ class FriendPostComment extends Component {
         return (
             isEdit === false
                 ?
-                <div>
+                <div className="comments">
                     <h2>{id} - {name}</h2>
                     <p>{email}</p>
                     <p>{body}</p>
-                    <button onClick={this.handleToggle}>Edit Comment</button>
-                    <button onClick={() => onDeleteFriendComment({ id: id, postId: postId })}>Delete Comment</button>
+                    {
+                        email === 'user@google.com'
+                            ?
+                            <div className="posts--form-buttonGroup">
+                                <button onClick={this.handleToggle}>Edit Comment</button>
+                                <button onClick={() => onDeleteFriendComment({ id: id, postId: postId })}>Delete Comment</button>
+                            </div>
+                            :
+                            null
+                    }
                 </div>
                 :
-                <form>
-                    {name}
-                    {email}
-                    <input
-                        type='input' value={body}
-                        placeholder='Input content here...' onChange={this.handleChangeBody}
-                    />
-                    <input type="button" value="Submit"
-                        onClick={this.handleSubmit} />
-                    <button onClick={this.handleToggle}>Cancel</button>
+                <form className="posts--form-edit">
+                    <div className="posts--form-inputGroup">
+                        <span>Name</span>
+                        <input
+                            type='input' value={name}
+                            placeholder='Input name here...' disabled
+                        />
+                    </div>
+                    <div className="posts--form-inputGroup">
+                        <span>Email</span>
+                        <input
+                            type='input' value={email}
+                            placeholder='Input email here...' disabled
+                        />
+                    </div>
+                    <div className="posts--form-inputGroup">
+                        <span>Content</span>
+                        <textarea rows="3" cols="50"
+                            type='input' value={body}
+                            placeholder='Input content here...' onChange={this.handleChangeBody}
+                        />
+                    </div>
+                    <div className="posts--form-buttonGroup">
+                        <button onClick={this.handleSubmit}>Submit</button>
+                        <button onClick={this.handleToggle}>Cancel</button>
+                    </div>
                 </form>
         );
     }

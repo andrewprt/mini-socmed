@@ -22,17 +22,15 @@ class FriendPost extends Component {
     render() {
         const { title, body, id } = this.props;
         return (
-            <div>
-                <div>
-                    <h2 onClick={this.handleToggle}>{title}</h2>
-                    {
-                        this.state.isExpand === true
-                            ?
-                            <FriendPostDetail body={body} id={id} />
-                            :
-                            null
-                    }
-                </div>
+            <div className="post">
+                <h2 onClick={this.handleToggle}>{title}</h2>
+                {
+                    this.state.isExpand === true
+                        ?
+                        <FriendPostDetail body={body} id={id} />
+                        :
+                        null
+                }
             </div>
         );
     }

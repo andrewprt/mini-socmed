@@ -1,15 +1,10 @@
 import React from 'react';
+import '../styles/Friends.css'
 import { connect } from 'react-redux';
 import { getFriendPostCommentList } from '../actions';
 import FriendPostCommentList from './FriendPostCommentList';
 import NewFriendComment from './NewFriendComment';
 
-// const mapStateToProps = (state, param) => {
-//     const x = state.friendList.friendPosts.findIndex(z => z.id === param.id);
-//     return {
-//         comments: state.friendList.friendPosts[x].comments
-//     }
-// }
 
 const mapStateToProps = (state, param) => {
     return {
@@ -36,7 +31,8 @@ class FriendPostDetail extends React.Component {
         const { id, body, comments } = this.props;
         return (
             <div>
-                {body}
+                <span className="friendPost--content">{body}</span>
+                <span className="friendPost--commentTitle">Comments</span>
                 <FriendPostCommentList comments={comments} postId={id} />
                 <NewFriendComment id={id} />
             </div>

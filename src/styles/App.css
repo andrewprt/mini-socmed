@@ -92,4 +92,62 @@ textarea {
 
 .post {
   cursor: pointer;
+  padding: 1rem;
+  border: 1px solid black;
+  margin-top: 1.5rem;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.posts--list {
+  width: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.posts--form-view p {
+  font-size: 1.4rem;
+}
+
+.posts--form-edit {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.posts--form-inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.posts--form-inputGroup span {
+  width: 5rem;
+}
+
+.posts--form-buttonGroup button {
+  margin-right: 1rem;
+} 
+
+.comments {
+  margin: 1rem;
+  font-size: 1.1rem;
+}
+
+.comments p {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+.comments--email {
+  color: green;
+}
+
+.form--comment {
+  display: flex;
+  justify-content: space-evenly;
 }

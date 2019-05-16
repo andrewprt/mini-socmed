@@ -56,7 +56,8 @@ class NewComment extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="form--comment">
+                <span>New comment</span>
                 <input
                     type='input' value={this.state.name}
                     placeholder='Input name here...' onChange={this.handleChangeName}

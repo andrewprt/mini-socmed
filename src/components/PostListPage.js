@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/App.css';
 import PostList from './PostList';
 import NewPost from './NewPost';
 import { connect } from 'react-redux';
@@ -13,7 +14,7 @@ class PostListPage extends React.Component {
     render() {
         const { posts } = this.props;
         return (
-            <div>
+            <div className="posts">
                 <NewPost />
                 <PostList posts={posts} />
             </div>

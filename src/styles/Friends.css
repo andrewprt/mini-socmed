@@ -33,3 +33,20 @@
 .thumbnail img {
 object-fit: cover;
 }
+
+.friendComments {
+    margin-top: 1rem;
+}
+
+.friendPost--content {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.friendPost--commentTitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: green;
+}
